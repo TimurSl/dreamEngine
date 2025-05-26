@@ -6,7 +6,7 @@ configure_file(
         ${CMAKE_BINARY_DIR}/version.h
         @ONLY
 )
-
+include_directories(${CMAKE_BINARY_DIR})
 
 # Set C++ standard
 set(CMAKE_CXX_STANDARD 23)

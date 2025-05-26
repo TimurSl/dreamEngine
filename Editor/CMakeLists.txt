@@ -7,6 +7,7 @@ add_executable(DreamEngineEditor
 target_include_directories(DreamEngineEditor PUBLIC
         ${CMAKE_CURRENT_SOURCE_DIR}/include
         ${CMAKE_SOURCE_DIR}/Engine/include
+        ${CMAKE_BINARY_DIR}
 )
 
 target_link_libraries(DreamEngineEditor PRIVATE DreamEngine)
