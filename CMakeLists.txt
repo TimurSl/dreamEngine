@@ -18,3 +18,6 @@ add_subdirectory(Engine)
 
 # Add Editor
 add_subdirectory(Editor)
+
+# Add SampleGame
+add_subdirectory(SampleGame)
