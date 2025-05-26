@@ -1,5 +1,6 @@
 extensions = [
     'breathe',
+    'sphinx.ext.autodoc',
 ]
 
 breathe_projects = {
