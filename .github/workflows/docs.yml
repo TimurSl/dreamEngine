@@ -18,7 +18,8 @@ jobs:
   build:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v4
+      - name: Checkout code
+        uses: actions/checkout@v4
 
       - name: Install Doxygen
         run: sudo apt-get update && sudo apt-get install -y doxygen
@@ -31,6 +32,11 @@ jobs:
       - name: Install Sphinx and Breathe
         run: pip install sphinx breathe
 
+      - name: Ensure clean docs directory
+        run: |
+          rm -rf docs
+          mkdir -p docs
+
       - name: Ensure Doxyfile exists
         run: |
           if [ ! -f Doxyfile ]; then
@@ -40,17 +46,27 @@ jobs:
             echo "Doxyfile already exists"
           fi
 
-      - name: Ensure valid Sphinx docs project
+      - name: Sphinx quickstart
         run: |
-          if [ ! -f docs/conf.py ] || [ ! -f docs/Makefile ]; then
-            rm -rf docs
-            sphinx-quickstart --quiet --project "DreamEngine" --author "Auto" docs
-            echo "Sphinx quickstart created minimal docs/"
-          fi
-          mkdir -p docs/_build/html
+          sphinx-quickstart --quiet --project "DreamEngine" --author "Auto" docs
+          echo "Sphinx quickstart created minimal docs/"
 
       - name: Generate Doxygen XML
         run: doxygen Doxyfile
+
+      - name: Configure Breathe extension in Sphinx
+        run: |
+          if ! grep -q "breathe" docs/conf.py; then
+            echo "Adding breathe extension to conf.py"
+            sed -i "/extensions = / s/]/, 'breathe']/" docs/conf.py
+            echo "breathe_projects = { 'DreamEngine': '../xml' }" >> docs/conf.py
+            echo "breathe_default_project = 'DreamEngine'" >> docs/conf.py
+          fi
+
+      - name: Copy Doxygen XML to docs/xml
+        run: |
+          mkdir -p docs/xml
+          cp -r xml/* docs/xml/ || true
 
       - name: Build Sphinx HTML
         working-directory: docs
