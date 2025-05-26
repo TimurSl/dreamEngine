@@ -1,0 +1,44 @@
+name: docs
+
+on:
+  push:
+    branches: [ main, master ]
+  pull_request:
+    branches: [ main, master ]
+
+jobs:
+  build-docs:
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v4
+
+      # Установить Doxygen
+      - name: Install Doxygen
+        run: sudo apt-get update && sudo apt-get install -y doxygen
+
+      # Установить Python и зависимости
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+
+      - name: Install Sphinx, Breathe
+        run: pip install sphinx breathe
+
+      # Собрать Doxygen XML
+      - name: Generate Doxygen XML
+        run: doxygen Doxyfile
+
+      # Собрать Sphinx документацию (например, в docs/_build/html)
+      - name: Build Sphinx HTML
+        working-directory: docs
+        run: |
+          make html
+
+      # Deploy to GitHub Pages
+      - name: Deploy to GitHub Pages
+        uses: peaceiris/actions-gh-pages@v4
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          publish_dir: ./docs/_build/html
