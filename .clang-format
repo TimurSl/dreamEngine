@@ -1,5 +1,4 @@
-﻿---
-Language: Cpp
+﻿Language: Cpp
 BasedOnStyle: Google
 AccessModifierOffset: -4
 AlignConsecutiveAssignments: false
@@ -55,4 +54,3 @@ SpacesInConditionalStatement: false
 SpacesInCStyleCastParentheses: false
 SpacesInParentheses: false
 TabWidth: 4
-...
