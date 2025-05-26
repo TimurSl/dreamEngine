@@ -1,8 +1,11 @@
-﻿#include <iostream>
+#include <iostream>
 
-/// @author Timur S.
-/// @brief Main function of the program.
-/// @return exit code
 int main() {
     return 0;
+}
+
+/// @brief Adds two integers.
+/// @return The sum of the two integers.
+int add(int a, int b) {
+    return a + b;
 }
