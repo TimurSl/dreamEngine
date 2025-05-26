@@ -40,9 +40,10 @@ jobs:
             echo "Doxyfile already exists"
           fi
 
-      - name: Ensure docs/ and docs/_build/html exist
+      - name: Ensure valid Sphinx docs project
         run: |
-          if [ ! -d docs ]; then
+          if [ ! -f docs/conf.py ] || [ ! -f docs/Makefile ]; then
+            rm -rf docs
             sphinx-quickstart --quiet --project "DreamEngine" --author "Auto" docs
             echo "Sphinx quickstart created minimal docs/"
           fi
