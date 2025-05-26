@@ -1,0 +1,37 @@
+name: Check clang-format
+
+on:
+  pull_request:
+    branches: [ main, master ]
+  push:
+    branches: [ main, master ]
+
+jobs:
+  clang-format-check:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Install clang-format
+        run: sudo apt-get update && sudo apt-get install -y clang-format
+
+      - name: Check clang-format
+        run: |
+          FILES=$(find . -type f \( -name "*.cpp" -o -name "*.h" -o -name "*.hpp" \))
+          if [ -z "$FILES" ]; then
+            echo "No source files found to check."
+            exit 0
+          fi
+          clang-format --version
+          FAILED=0
+          for file in $FILES; do
+            if ! diff -u "$file" <(clang-format "$file") > /dev/null; then
+              echo "::error file=$file::File is not properly formatted"
+              FAILED=1
+            fi
+          done
+          if [ $FAILED -eq 1 ]; then
+            echo "Some files are not formatted with clang-format. Please run clang-format and commit the changes."
+            exit 1
+          fi
