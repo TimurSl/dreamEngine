@@ -2,6 +2,7 @@
 #include "core/logger/ConsoleLogger.h"
 #include <iostream>
 #include <mutex>
+#include <time.h>
 
 #include "core/logger/LogLevel.h"
 
@@ -19,7 +20,14 @@ namespace DreamEngine::Core::Logger {
         case LogLevel::Error:   levelStr = "[Error] ";   break;
         case LogLevel::Fatal:   levelStr = "[Fatal] ";   break;
         }
-        std::cout << levelStr << msg << std::endl;
+
+        // current time
+        time_t now = time(nullptr);
+        struct tm* timeinfo = localtime(&now);
+        char timeBuffer[80];
+        strftime(timeBuffer, sizeof(timeBuffer), "[%Y-%m-%d %H:%M:%S] ", timeinfo);
+
+        std::cout << timeBuffer << levelStr << msg << std::endl;
     }
 
 } // namespace DreamEngine::Core::Logger
