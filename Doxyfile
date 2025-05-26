@@ -1,0 +1,55 @@
+DOXYFILE_ENCODING      = UTF-8
+
+PROJECT_NAME           = "Dream Engine"
+PROJECT_NUMBER         =
+PROJECT_BRIEF          = "Dream Engine is a C++ game engine using GLFW and OpenGL"
+PROJECT_LOGO           =
+PROJECT_ICON           =
+
+OUTPUT_DIRECTORY       =
+CREATE_SUBDIRS         = NO
+
+INPUT                  = Engine/src Engine/include Editor/src Editor/include
+RECURSIVE              = YES
+
+OUTPUT_LANGUAGE        = English
+ALLOW_UNICODE_NAMES    = YES
+
+GENERATE_XML           = YES
+GENERATE_HTML          = NO
+
+XML_OUTPUT             = xml
+HTML_OUTPUT            = html
+
+STRIP_FROM_PATH        =
+STRIP_FROM_INC_PATH    =
+
+JAVADOC_AUTOBRIEF      = YES
+QT_AUTOBRIEF           = YES
+MULTILINE_CPP_IS_BRIEF = YES
+
+EXTRACT_ALL            = YES
+EXTRACT_PRIVATE        = YES
+EXTRACT_STATIC         = YES
+EXTRACT_LOCAL_CLASSES  = YES
+EXTRACT_LOCAL_METHODS  = YES
+
+SHORT_NAMES            = NO
+
+BRIEF_MEMBER_DESC      = YES
+REPEAT_BRIEF           = YES
+ABBREVIATE_BRIEF       = "The $name class" \
+                         "The $name widget" \
+                         "The $name file" \
+                         is \
+                         provides \
+                         specifies \
+                         contains \
+                         represents \
+                         a \
+                         an \
+                         the
+
+FULL_PATH_NAMES        = YES
+INLINE_INHERITED_MEMB  = NO
+ALWAYS_DETAILED_SEC    = NO
