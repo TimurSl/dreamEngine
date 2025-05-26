@@ -3,9 +3,10 @@
 //
 
 #include "editor_main.h"
+#include "version.h"
 #include <iostream>
 
 int main(int argc, char* argv[])
 {
-    std::cout << "Editor started with " << argc << " arguments." << std::endl;
+    std::cout << "DreamEngine version: " << DREAMENGINE_VERSION << std::endl;
 }
