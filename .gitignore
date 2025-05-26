@@ -1,0 +1,55 @@
+# Build и временные файлы
+build/
+cmake-build-*/
+CMakeFiles/
+CMakeCache.txt
+Makefile
+cmake_install.cmake
+compile_commands.json
+
+# JetBrains IDE (CLion)
+.idea/
+*.iml
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Файлы сессий
+*.swp
+*.swo
+
+# Binary output
+*.exe
+*.out
+*.app
+*.dll
+*.so
+*.dylib
+*.pdb
+*.obj
+*.o
+*.a
+*.lib
+
+# Logs
+*.log
+
+# Generated files
+*.autosave
+*.user
+*.workspace
+
+# GTest
+Testing/
+test_detail.xml
+
+# C++ Package Managers
+conanbuildinfo.*
+conaninfo.txt
+conanfile.lock
+vcpkg_installed/
+vcpkg_installed_*/
+
+# Скрытые папки/файлы (Linux, macOS)
+*~
