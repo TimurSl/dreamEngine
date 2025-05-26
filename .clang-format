@@ -11,5 +11,4 @@ SpacesInParentheses: false
 SpacesInSquareBrackets: false
 SpaceAfterCStyleCast: true
 SpaceBeforeCpp11BracedList: true
-Standard: Cpp23
 Language: Cpp
