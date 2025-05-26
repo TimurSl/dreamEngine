@@ -1,6 +1,10 @@
 ﻿# Engine build script
 add_library(DreamEngine STATIC
         src/engine_core.cpp
+        src/core/logger/LogManager.cpp
+        src/core/logger/ConsoleLogger.cpp
+        src/core/logger/FileLogger.cpp
+        src/core/logger/Logger.cpp
         # add other engine source files here
 )
 
