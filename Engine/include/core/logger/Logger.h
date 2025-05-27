@@ -2,16 +2,12 @@
 
 #include <string>
 
-namespace DreamEngine::Core::Logger
+enum class LogLevel;
+
+class Logger
 {
-    enum class LogLevel;
+public:
+    virtual ~Logger() = default;
 
-    class Logger
-    {
-    public:
-        virtual ~Logger() = default;
-
-        virtual void Log(LogLevel level, const std::string& msg) = 0;
-    };
-
-} // namespace DreamEngine::Core::Logger
+    virtual void Log(LogLevel level, const std::string& msg) = 0;
+};
