@@ -1,7 +1,7 @@
 ﻿#include "core/alloc/ArenaAllocator.h"
 
-#include <cstdlib>
 #include <cassert>
+#include <cstdlib>
 
 ArenaAllocator::ArenaAllocator(size_t totalSize)
 {
@@ -11,10 +11,7 @@ ArenaAllocator::ArenaAllocator(size_t totalSize)
     m_Offset = 0;
 }
 
-ArenaAllocator::~ArenaAllocator()
-{
-    std::free(m_Buffer);
-}
+ArenaAllocator::~ArenaAllocator() { std::free(m_Buffer); }
 
 void* ArenaAllocator::Allocate(size_t size, size_t alignment)
 {
@@ -31,7 +28,4 @@ void* ArenaAllocator::Allocate(size_t size, size_t alignment)
     return ptr;
 }
 
-void ArenaAllocator::Reset()
-{
-    m_Offset = 0;
-}
+void ArenaAllocator::Reset() { m_Offset = 0; }
