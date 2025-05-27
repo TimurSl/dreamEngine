@@ -4,6 +4,7 @@ project(SampleGame LANGUAGES CXX)
 set(CMAKE_CXX_STANDARD 23)
 set(CMAKE_CXX_STANDARD_REQUIRED ON)
 
+
 # Если SampleGame и Engine на одном уровне, то:
 # add_subdirectory(../Engine Engine_build)  # если собираешь из корня, не отсюда!
 
