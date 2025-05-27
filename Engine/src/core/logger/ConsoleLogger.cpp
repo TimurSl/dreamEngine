@@ -1,23 +1,36 @@
 ﻿#include "core/logger/ConsoleLogger.h"
-#include "core/logger/ConsoleLogger.h"
 #include <iostream>
 #include <mutex>
 #include <time.h>
+#include "core/logger/ConsoleLogger.h"
 
 #include "core/logger/LogLevel.h"
 
 
-
-void ConsoleLogger::Log(LogLevel level, const std::string& msg) {
+void ConsoleLogger::Log(LogLevel level, const std::string& msg)
+{
     std::lock_guard<std::mutex> lock(mutex);
     const char* levelStr = "";
-    switch (level) {
-    case LogLevel::Trace:   levelStr = "[Trace] ";   break;
-    case LogLevel::Debug:   levelStr = "[Debug] ";   break;
-    case LogLevel::Info:    levelStr = "[Info] ";    break;
-    case LogLevel::Warning: levelStr = "[Warning] "; break;
-    case LogLevel::Error:   levelStr = "[Error] ";   break;
-    case LogLevel::Fatal:   levelStr = "[Fatal] ";   break;
+    switch (level)
+    {
+    case LogLevel::Trace:
+        levelStr = "[Trace] ";
+        break;
+    case LogLevel::Debug:
+        levelStr = "[Debug] ";
+        break;
+    case LogLevel::Info:
+        levelStr = "[Info] ";
+        break;
+    case LogLevel::Warning:
+        levelStr = "[Warning] ";
+        break;
+    case LogLevel::Error:
+        levelStr = "[Error] ";
+        break;
+    case LogLevel::Fatal:
+        levelStr = "[Fatal] ";
+        break;
     }
 
     // current time

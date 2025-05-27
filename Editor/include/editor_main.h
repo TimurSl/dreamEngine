@@ -5,6 +5,6 @@
 #ifndef EDITOR_MAIN_H
 #define EDITOR_MAIN_H
 
-#endif //EDITOR_MAIN_H
+#endif // EDITOR_MAIN_H
 
 void add(int a, int b);

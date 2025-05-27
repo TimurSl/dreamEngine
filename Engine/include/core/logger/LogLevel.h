@@ -1,7 +1,8 @@
 ﻿#pragma once
 
 /// @brief Enumeration representing different log levels.
-enum class LogLevel {
+enum class LogLevel
+{
     Trace = 0,
     Debug = 1,
     Info = 2,
