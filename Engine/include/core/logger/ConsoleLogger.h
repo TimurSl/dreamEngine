@@ -1,17 +1,15 @@
 ﻿#pragma once
 
-#include "core/logger/Logger.h"
 #include <mutex>
+#include "core/logger/Logger.h"
 
-namespace DreamEngine::Core::Logger {
-enum class LogLevel;}namespace DreamEngine::Core::Logger
+enum class LogLevel;
+
+class ConsoleLogger : public Logger
 {
-    class ConsoleLogger : public Logger
-    {
-    public:
-        void Log(LogLevel level, const std::string& msg) override;
+public:
+    void Log(LogLevel level, const std::string& msg) override;
 
-    private:
-        std::mutex mutex;
-    };
-}
+private:
+    std::mutex mutex;
+};
