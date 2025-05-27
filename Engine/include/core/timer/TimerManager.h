@@ -1,7 +1,7 @@
 ﻿#pragma once
 
-#include <vector>
 #include <memory>
+#include <vector>
 
 #include "Timer.h"
 
@@ -16,7 +16,8 @@ public:
     /// @param loop If true, the timer will repeat every interval, if false, it will only run once.
     /// @param runOnFirstTick If true, the callback will be called immediately on the first tick.
     /// @param startImmediately If true, the timer will start immediately after being added.
-    Timer* AddTimer(float interval, std::function<void()> callback, bool loop = false, bool runOnFirstTick = false, bool startImmediately = true);
+    Timer* AddTimer(float interval, std::function<void()> callback, bool loop = false, bool runOnFirstTick = false,
+                    bool startImmediately = true);
 
     /// @brief Updates all timers, should be called every frame with the elapsed time since the last call.
     /// @param deltaTime The time elapsed since the last update in seconds.

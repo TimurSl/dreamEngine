@@ -1,6 +1,7 @@
 ﻿#include "core/timer/TimeUtils.h"
 
-float TimeUtils::GetCurrentTime(){
+float TimeUtils::GetCurrentTime()
+{
     using namespace std::chrono;
     static auto start = steady_clock::now();
     auto now = steady_clock::now();

@@ -7,17 +7,12 @@
 #include "core/logger/LogLevel.h"
 #include "core/logger/LogManager.h"
 
-Timer::Timer(float interval, std::function<void()> callback, bool loop, bool runOnFirstTick)
-    : m_Interval(interval)
-    , m_TimeLeft(interval)
-    , m_Loop(loop)
-    , m_Paused(false)
-    , m_Running(false)
-    , m_RunOnFirstTick(runOnFirstTick)
-    , m_FirstTick(true)
-    , m_Callback(std::move(callback))
+Timer::Timer(float interval, std::function<void()> callback, bool loop, bool runOnFirstTick) :
+    m_Interval(interval), m_TimeLeft(interval), m_Loop(loop), m_Paused(false), m_Running(false),
+    m_RunOnFirstTick(runOnFirstTick), m_FirstTick(true), m_Callback(std::move(callback))
 
-{}
+{
+}
 
 void Timer::Start()
 {
@@ -53,15 +48,9 @@ void Timer::Resume()
     m_Paused = false;
 }
 
-void Timer::Reset()
-{
-    Start();
-}
+void Timer::Reset() { Start(); }
 
-bool Timer::IsPaused() const
-{
-    return m_Paused;
-}
+bool Timer::IsPaused() const { return m_Paused; }
 
 void Timer::Update(float deltaTime)
 {
@@ -101,7 +90,4 @@ void Timer::Update(float deltaTime)
     }
 }
 
-bool Timer::IsFinished() const
-{
-    return !m_Running || !m_Loop;
-}
+bool Timer::IsFinished() const { return !m_Running || !m_Loop; }

@@ -5,26 +5,28 @@
 #include "core/logger/ConsoleLogger.h"
 #include "core/logger/LogLevel.h"
 
-LogManager::LogManager()
-    : m_Logger(std::make_shared<ConsoleLogger>()), m_CurrentLevel(LogLevel::Info)
-{}
+LogManager::LogManager() : m_Logger(std::make_shared<ConsoleLogger>()), m_CurrentLevel(LogLevel::Info) {}
 
-LogManager& LogManager::Instance() {
+LogManager& LogManager::Instance()
+{
     static LogManager instance;
     return instance;
 }
 
-void LogManager::SetLogger(std::shared_ptr<Logger> logger) {
+void LogManager::SetLogger(std::shared_ptr<Logger> logger)
+{
     std::lock_guard<std::mutex> lock(m_Mutex);
     m_Logger = logger;
 }
 
-void LogManager::SetLevel(LogLevel level) {
+void LogManager::SetLevel(LogLevel level)
+{
     std::lock_guard<std::mutex> lock(m_Mutex);
     m_CurrentLevel = level;
 }
 
-void LogManager::Log(LogLevel level, const std::string& msg) {
+void LogManager::Log(LogLevel level, const std::string& msg)
+{
     std::lock_guard<std::mutex> lock(m_Mutex);
 
     if (level < m_CurrentLevel)
