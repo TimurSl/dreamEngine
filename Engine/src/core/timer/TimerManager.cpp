@@ -5,12 +5,15 @@
 
 TimerManager::TimerManager() {}
 
-Timer* TimerManager::AddTimer(float interval, std::function<void()> callback, bool loop, bool runOnFirstTick, bool startImmediately)
+Timer* TimerManager::AddTimer(float interval, std::function<void()> callback, bool loop, bool runOnFirstTick,
+                              bool startImmediately)
 {
-    if (interval <= 0.0f) {
+    if (interval <= 0.0f)
+    {
         throw std::invalid_argument("Interval must be greater than zero.");
     }
-    if (!callback) {
+    if (!callback)
+    {
         throw std::invalid_argument("Callback function cannot be null.");
     }
 
@@ -18,10 +21,12 @@ Timer* TimerManager::AddTimer(float interval, std::function<void()> callback, bo
     Timer* timerPtr = timer.get();
     m_timers.push_back(std::move(timer));
 
-    if (startImmediately) {
+    if (startImmediately)
+    {
         timerPtr->Start();
     }
-    else {
+    else
+    {
         timerPtr->Reset();
     }
 
@@ -31,27 +36,33 @@ Timer* TimerManager::AddTimer(float interval, std::function<void()> callback, bo
 void TimerManager::RemoveTimer(Timer* timer)
 {
     auto it = std::remove_if(m_timers.begin(), m_timers.end(),
-        [timer](const std::unique_ptr<Timer>& t) { return t.get() == timer; });
+                             [timer](const std::unique_ptr<Timer>& t) { return t.get() == timer; });
 
-    if (it != m_timers.end()) {
+    if (it != m_timers.end())
+    {
         m_timers.erase(it, m_timers.end());
-    } else {
+    }
+    else
+    {
         throw std::runtime_error("Timer not found in TimerManager.");
     }
 }
 
-void TimerManager::ClearTimers()
-{
-    m_timers.clear();
-}
+void TimerManager::ClearTimers() { m_timers.clear(); }
 
-void TimerManager::Update(float deltaTime){
-    DE_LOG_TRACE("TimerManager::Update, timers count: " + std::to_string(m_timers.size()) + ", deltaTime: " + std::to_string(deltaTime));
-    for (auto it = m_timers.begin(); it != m_timers.end();) {
+void TimerManager::Update(float deltaTime)
+{
+    DE_LOG_TRACE("TimerManager::Update, timers count: " + std::to_string(m_timers.size()) +
+                 ", deltaTime: " + std::to_string(deltaTime));
+    for (auto it = m_timers.begin(); it != m_timers.end();)
+    {
         (*it)->Update(deltaTime);
-        if ((*it)->IsFinished()) {
+        if ((*it)->IsFinished())
+        {
             it = m_timers.erase(it);
-        } else {
+        }
+        else
+        {
             ++it;
         }
     }

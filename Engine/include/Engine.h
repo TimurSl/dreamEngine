@@ -27,5 +27,4 @@ private:
     bool m_IsRunning;
     bool m_IsInitialized = false;
     TimerManager* m_TimerManager;
-
 };
