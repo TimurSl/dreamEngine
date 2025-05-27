@@ -7,7 +7,9 @@ add_library(DreamEngine STATIC
         src/core/timer/TimeUtils.cpp
         src/core/timer/Timer.cpp
         src/core/timer/TimerManager.cpp
-        # add other engine source files here
+        src/core/alloc/Allocator.cpp
+        src/core/alloc/MallocAllocator.cpp
+        src/core/alloc/ArenaAllocator.cpp
 )
 
 target_include_directories(DreamEngine PUBLIC

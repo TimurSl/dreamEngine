@@ -13,7 +13,10 @@ int main(int argc, char* argv[])
     engine->Initialize();
 
     TimerManager& timerManager = engine->GetTimerManager();
-    timerManager.AddTimer(1.0f, []() { DE_LOG_INFO("Timer triggered every second"); }, true, true, true);
+    timerManager.AddTimer(1.0f, []()
+    {
+        DE_LOG_INFO("Timer triggered every second");
+    }, true, true, true);
 
     engine->Run();
 }
